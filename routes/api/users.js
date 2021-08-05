@@ -91,4 +91,44 @@ router.post("/login", (req, res) => {
   });
 });
 
+// @route get api/users/:email
+// @desc fetch user details
+// @access Public
+
+router.get("/fetch/:email", (req, res) => {
+  User.find({ email: req.params.email }, (err, user) => {
+    if (err) {
+      res.status(500).json(err);
+    }
+    if (!user.length) {
+      res.status(404).json({ emailnotfound: "Email not found" });
+    } else {
+      res.json(user);
+    }
+  });
+});
+
+// @route get api/users/edit/:email
+// @desc edit user details
+// @access Public
+
+router.post("/edit/:email", (req, res) => {
+  User.updateOne(
+    { email: req.params.email },
+    {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      gender: req.body.gender,
+      dateOfBirth: req.body.dateOfBirth,
+    },
+    (err, user) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.json(user);
+      }
+    }
+  );
+});
+
 module.exports = router;
