@@ -1,0 +1,10 @@
+{
+    "id": "1",
+    "firstname": "Test",
+    "lastname": "User",
+    "gender": "Male",
+    "dateOfBirth": "1998-09-01",
+    "email": "testuser@mail.com",
+    "password": 12345678,
+    "password2": 12345678
+}
